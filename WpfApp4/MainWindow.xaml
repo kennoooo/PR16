@@ -1,0 +1,92 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Roguelike" Height="600" Width="900">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+        <!-- Название -->
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="5">
+            <TextBlock Text="Название игры" FontSize="26" HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Панель персонажа -->
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="FloorText" Text="Этаж: 1" FontSize="16"/>
+                <TextBlock x:Name="HPText" Text="HP: 100" FontSize="16" Grid.Column="1" HorizontalAlignment="Right"/>
+            </Grid>
+        </Border>
+
+        <!-- Основная игровая зона -->
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="5" Padding="10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="RoomText"
+                           Text="Игра"
+                           FontSize="28"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" Margin="5"/>
+
+                <!-- Картинка врага или сундука -->
+                <Image x:Name="RoomImage" Width="150" Height="150" Margin="5"/>
+
+                <!-- Кнопки для боя -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" x:Name="CombatPanel">
+                    <Button Content="Атака" Width="80" Margin="5" Click="Attack_Click"/>
+                    <Button Content="Защита" Width="80" Margin="5" Click="Defend_Click"/>
+                </StackPanel>
+
+                <!-- Кнопки для сундука -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" x:Name="ItemPanel" Visibility="Collapsed">
+                    <Button Content="Взять" Width="80" Margin="5" Click="TakeItem_Click"/>
+                    <Button Content="Выбросить" Width="80" Margin="5" Click="DropItem_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Нижняя панель: инвентарь и лог -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Инвентарь -->
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="5">
+                <StackPanel>
+                    <TextBlock Text="Инвентарь" FontSize="24" Margin="10"/>
+                    <TextBlock x:Name="WeaponText" Margin="10"/>
+                    <TextBlock x:Name="ArmorText" Margin="10"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="ЛогБар" FontSize="24" Margin="10"/>
+
+                    <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto" 
+                      x:Name="LogScroll">
+                        <StackPanel x:Name="LogPanel"/>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
