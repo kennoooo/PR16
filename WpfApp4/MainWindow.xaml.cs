@@ -122,7 +122,10 @@ namespace WpfApp
 
             if (player.HP <= 0)
             {
-                MainFrame.Navigate(new DeadWindow());
+                this.Visibility = Visibility.Collapsed;
+                DeadWindow deadWindow = new DeadWindow();
+                deadWindow.Show();
+
             }
 
             UpdateUI();
