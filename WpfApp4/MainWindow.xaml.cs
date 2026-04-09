@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using WpfApp4;
 
 namespace WpfApp
 {
@@ -121,8 +122,7 @@ namespace WpfApp
 
             if (player.HP <= 0)
             {
-                MessageBox.Show("Вы проиграли!");
-                Application.Current.Shutdown();
+                MainFrame.Navigate(new DeadWindow());
             }
 
             UpdateUI();
